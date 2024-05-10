@@ -17,8 +17,8 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   String email = "", password = "";
 
-  TextEditingController mailcontroller = new TextEditingController();
-  TextEditingController passwordcontroller = new TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   final _formkey = GlobalKey<FormState>();
 
@@ -81,7 +81,7 @@ class _LogInState extends State<LogIn> {
                           }
                           return null;
                         },
-                        controller: mailcontroller,
+                        controller: emailController,
                         decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "Email",
@@ -99,7 +99,7 @@ class _LogInState extends State<LogIn> {
                           color: const Color(0xFFedf0f8),
                           borderRadius: BorderRadius.circular(30)),
                       child: TextFormField(
-                        controller: passwordcontroller,
+                        controller: passwordController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please Enter Password';
@@ -120,8 +120,8 @@ class _LogInState extends State<LogIn> {
                       onTap: (){
                         if(_formkey.currentState!.validate()){
                           setState(() {
-                            email= mailcontroller.text;
-                            password=passwordcontroller.text;
+                            email= emailController.text;
+                            password=passwordController.text;
                           });
                         }
                         userLogin();
@@ -202,7 +202,7 @@ class _LogInState extends State<LogIn> {
                     width: 50,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("assets/images/google.png"),
+                            image: AssetImage("assets/images/apple.png"),
                             fit: BoxFit.cover
                         )
                     ),
