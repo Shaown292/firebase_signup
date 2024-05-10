@@ -22,6 +22,8 @@ class _LogInState extends State<LogIn> {
 
   final _formkey = GlobalKey<FormState>();
 
+
+  /// User Log with firebase Function
   userLogin() async {
     try {
       await FirebaseAuth.instance
@@ -68,6 +70,8 @@ class _LogInState extends State<LogIn> {
                 key: _formkey,
                 child: Column(
                   children: [
+
+                    /// Email text Field
                     Container(
                       padding:
                       const EdgeInsets.symmetric(vertical: 2.0, horizontal: 30.0),
@@ -92,6 +96,8 @@ class _LogInState extends State<LogIn> {
                     const SizedBox(
                       height: 30.0,
                     ),
+
+                    /// Password Text Field
                     Container(
                       padding:
                       const EdgeInsets.symmetric(vertical: 2.0, horizontal: 30.0),
@@ -116,6 +122,8 @@ class _LogInState extends State<LogIn> {
                     const SizedBox(
                       height: 30.0,
                     ),
+
+                    /// Sign in button
                     GestureDetector(
                       onTap: (){
                         if(_formkey.currentState!.validate()){
@@ -149,6 +157,8 @@ class _LogInState extends State<LogIn> {
             const SizedBox(
               height: 20.0,
             ),
+
+            /// Forget password Button
             GestureDetector(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> const ForgotPassword()));
@@ -175,6 +185,8 @@ class _LogInState extends State<LogIn> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
+                /// Log in with Gmail
                 GestureDetector(
                   onTap: (){
                     AuthMethods().signInWithGoogle(context);
@@ -193,6 +205,8 @@ class _LogInState extends State<LogIn> {
                 const SizedBox(
                   width: 30.0,
                 ),
+
+                /// Log in with Apple
                 GestureDetector(
                   onTap: (){
                     AuthMethods().signInWithApple();

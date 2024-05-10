@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_signup/home.dart';
 import 'package:firebase_signup/log_in.dart';
+import 'package:firebase_signup/service/auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -20,6 +21,7 @@ class _SignUpState extends State<SignUp> {
 
   final _formkey = GlobalKey<FormState>();
 
+  /// Register users info in flutter
   registration() async {
     if (password != "" && nameController.text!=""&& emailController.text!="") {
       try {
@@ -75,6 +77,8 @@ class _SignUpState extends State<SignUp> {
                 key: _formkey,
                 child: Column(
                   children: [
+
+                    /// Name Text field
                     Container(
                       padding:
                       const EdgeInsets.symmetric(vertical: 2.0, horizontal: 30.0),
@@ -99,6 +103,7 @@ class _SignUpState extends State<SignUp> {
                     const SizedBox(
                       height: 30.0,
                     ),
+                    ///  Email Text field
                     Container(
                       padding:
                       const EdgeInsets.symmetric(vertical: 2.0, horizontal: 30.0),
@@ -123,6 +128,8 @@ class _SignUpState extends State<SignUp> {
                     const SizedBox(
                       height: 30.0,
                     ),
+
+                    /// Password
                     Container(
                       padding:
                       const EdgeInsets.symmetric(vertical: 2.0, horizontal: 30.0),
@@ -148,6 +155,8 @@ class _SignUpState extends State<SignUp> {
                     const SizedBox(
                       height: 30.0,
                     ),
+
+                    /// Sign in Button
                     GestureDetector(
                       onTap: (){
                         if(_formkey.currentState!.validate()){
@@ -195,20 +204,42 @@ class _SignUpState extends State<SignUp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  "assets/images/google.png",
-                  height: 45,
-                  width: 45,
-                  fit: BoxFit.cover,
+
+                /// Sign in with google
+                GestureDetector(
+                  onTap: (){
+                    AuthMethods().signInWithGoogle(context);
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/google.png"),
+                            fit: BoxFit.cover
+                        )
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   width: 30.0,
                 ),
-                Image.asset(
-                  "assets/images/apple1.png",
-                  height: 50,
-                  width: 50,
-                  fit: BoxFit.cover,
+
+                /// Sign in with apple
+                GestureDetector(
+                  onTap: (){
+                    AuthMethods().signInWithApple();
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/apple.png"),
+                            fit: BoxFit.cover
+                        )
+                    ),
+                  ),
                 )
               ],
             ),
